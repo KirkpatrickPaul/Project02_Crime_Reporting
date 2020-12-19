@@ -1,2 +1,5 @@
-DROP DATABASE IF EXISTS passport_demo;
-CREATE DATABASE passport_demo;
+ DROP DATABASE IF EXISTS crime_db;
+
+CREATE DATABASE crime_db;
+
+USE crime_dbburgers_db;
