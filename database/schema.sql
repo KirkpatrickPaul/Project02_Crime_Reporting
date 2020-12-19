@@ -2,4 +2,4 @@
 
 CREATE DATABASE crime_db;
 
-USE crime_dbburgers_db;
+USE crime_db;
