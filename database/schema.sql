@@ -1,4 +1,4 @@
- DROP DATABASE IF EXISTS crime_db;
+DROP DATABASE IF EXISTS crime_db;
 
 CREATE DATABASE crime_db;
 
