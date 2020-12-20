@@ -1,3 +1,4 @@
+
 module.export = function (sequelize, DataTypes){
     const Crime = sequelize.define("Crime", {
         user: {
@@ -8,10 +9,16 @@ module.export = function (sequelize, DataTypes){
         title: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [1]
+            }
         },
         body: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [1]
+            }
         },
         longitude: {
             type: DataTypes.STRING,
@@ -22,6 +29,13 @@ module.export = function (sequelize, DataTypes){
             allowNull: false,
         }
 
-
-    })
-}
+    });
+    Crime.associate = function(models) {
+        Crime.belongsto(models.User, {
+            foreignkey: {
+                allowNull: false
+            }
+        });
+    };
+    return Crime;
+};
