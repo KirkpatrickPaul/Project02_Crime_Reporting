@@ -44,23 +44,57 @@ router
   .route("/crimes/:id?")
 
   .get(async (req, res) => {
-    let criteria = { include: [db.User] };
-    if (req.params.id) {
-      criteria.where = { id: req.params.id };
+    try {
+      let criteria = { include: [db.User] };
+      if (req.params.id) {
+        criteria.where = { id: req.params.id };
+      }
+      const crimes = await db.Crime.findAll(criteria);
+      res.status(200).json(crimes);
+    } catch (error) {
+      res.Status(500).send(error);
     }
-    const crimes = await db.Crime.findAll(criteria);
-    res.status(200).json(crimes);
   })
 
   .post(async (req, res) => {
-    const newCrime = await db.Crime.create(req.body);
-    res.status(201).json(newCrime);
+    try {
+      const newCrime = await db.Crime.create(req.body);
+      res.status(201).json(newCrime);
+    } catch (error) {
+      if (!req.body) {
+        res
+          .Status(400)
+          .send(
+            "Bad request. Your crime could not be created because the request was empty."
+          );
+      } else {
+        res.Status(500).send(error);
+      }
+    }
   })
 
   .put(async (req, res) => {
-    const criteria = { where: { id: req.params.id }, ...req.body };
-    const updated = await db.Crime.update(criteria);
-    res.status.json(criteria);
+    try {
+      const criteria = { where: { id: req.params.id }, ...req.body };
+      const updated = await db.Crime.update(criteria);
+      res.status.json(criteria);
+    } catch (error) {
+      if (!req.body) {
+        res
+          .Status(400)
+          .send(
+            "Bad request. Your crime could not be updated because the request was empty."
+          );
+      } else if (!req.params.id && !req.body.id) {
+        res
+          .Status(404)
+          .send(
+            "Bad request. Your crime could not be updated because the id was not found."
+          );
+      } else {
+        res.Status(500).send(error);
+      }
+    }
   });
 
 module.exports = router;
