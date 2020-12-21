@@ -45,14 +45,14 @@ router
 
   .get(async (req, res) => {
     try {
-      let criteria = { include: [db.User] };
+      const criteria = { include: [db.User] };
       if (req.params.id) {
         criteria.where = { id: req.params.id };
       }
       const crimes = await db.Crime.findAll(criteria);
       res.status(200).json(crimes);
     } catch (error) {
-      res.Status(500).send(error);
+      res.Status(500).json(error);
     }
   })
 
@@ -64,35 +64,65 @@ router
       if (!req.body) {
         res
           .Status(400)
-          .send(
+          .json(
             "Bad request. Your crime could not be created because the request was empty."
           );
       } else {
-        res.Status(500).send(error);
+        res.Status(500).json(error);
       }
     }
   })
 
   .put(async (req, res) => {
     try {
-      const criteria = { where: { id: req.params.id }, ...req.body };
+      let criteria;
+      if (req.params.id) {
+        criteria = { where: { id: req.params.id }, ...req.body };
+      } else {
+        const { id, ...body } = req.body;
+        criteria = { where: { id }, ...body };
+      }
       const updated = await db.Crime.update(criteria);
-      res.status.json(criteria);
+      res.status.json(updated);
     } catch (error) {
       if (!req.body) {
         res
           .Status(400)
-          .send(
+          .json(
             "Bad request. Your crime could not be updated because the request was empty."
           );
       } else if (!req.params.id && !req.body.id) {
         res
           .Status(404)
-          .send(
+          .json(
             "Bad request. Your crime could not be updated because the id was not found."
           );
       } else {
-        res.Status(500).send(error);
+        res.Status(500).json(error);
+      }
+    }
+  })
+
+  .delete(async (req, res) => {
+    try {
+      let criteria;
+      if (req.params.id) {
+        criteria = { where: { id: req.params.id }, ...req.body };
+      } else {
+        const { id, ...body } = req.body;
+        criteria = { where: { id }, ...body };
+      }
+      const deleted = await db.Crime.destroy(criteria);
+      res.sendStatus(200);
+    } catch (error) {
+      if (!req.params.id && !req.body.id) {
+        res
+          .Status(404)
+          .json(
+            "Bad request. Your crime could not be deleted because the id was not found."
+          );
+      } else {
+        res.Status(500).json(error);
       }
     }
   });
