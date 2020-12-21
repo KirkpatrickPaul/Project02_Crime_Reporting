@@ -1,26 +1,23 @@
-const router = require("express").Router();
+const router = require('express').Router();
 // Requiring our models and passport as we've configured it
-const db = require("../../models");
-const passport = require("../../config/passport");
+const db = require('../../models');
+const passport = require('../../config/passport');
 
 // Using the passport.authenticate middleware with our local strategy.
 // If the user has valid login credentials, send them to the members page.
 // Otherwise the user will be sent an error
-router.post("/login", passport.authenticate("local"), (req, res) => {
+router.post('/login', passport.authenticate('local'), (req, res) => {
   // Sending back a password, even a hashed password, isn't a good idea
-  res.json({
-    email: req.user.email,
-    id: req.user.id,
-  });
+  res.json({ email: req.user.email, id: req.user.id });
 });
 
 // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
 // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
 // otherwise send back an error
-router.post("/signup", (req, res) => {
+router.post('/signup', (req, res) => {
   db.User.create(req.body)
     .then(() => {
-      res.redirect(307, "/api/login");
+      res.redirect(307, '/api/login');
     })
     .catch((err) => {
       res.status(401).json(err);
@@ -28,7 +25,7 @@ router.post("/signup", (req, res) => {
 });
 
 // Route for getting some data about our user to be used client side
-router.get("/user_data", (req, res) => {
+router.get('/user_data', (req, res) => {
   if (!req.user) {
     // The user is not logged in, send back an empty object
     return res.json({});
@@ -41,7 +38,7 @@ router.get("/user_data", (req, res) => {
 
 // Above this line is boilerplate code.
 router
-  .route("/crimes/:id?")
+  .route('/crimes/:id?')
 
   .get(async (req, res) => {
     try {
@@ -65,7 +62,7 @@ router
         res
           .Status(400)
           .json(
-            "Bad request. Your crime could not be created because the request was empty."
+            'Bad request. Your crime could not be created because the request was empty.'
           );
       } else {
         res.Status(500).json(error);
@@ -89,13 +86,13 @@ router
         res
           .Status(400)
           .json(
-            "Bad request. Your crime could not be updated because the request was empty."
+            'Bad request. Your crime could not be updated because the request was empty.'
           );
       } else if (!req.params.id && !req.body.id) {
         res
           .Status(404)
           .json(
-            "Bad request. Your crime could not be updated because the id was not found."
+            'Bad request. Your crime could not be updated because the id was not found.'
           );
       } else {
         res.Status(500).json(error);
@@ -113,13 +110,15 @@ router
         criteria = { where: { id }, ...body };
       }
       const deleted = await db.Crime.destroy(criteria);
-      res.sendStatus(200);
+      if (deleted) {
+        res.sendStatus(200);
+      }
     } catch (error) {
       if (!req.params.id && !req.body.id) {
         res
           .Status(404)
           .json(
-            "Bad request. Your crime could not be deleted because the id was not found."
+            'Bad request. Your crime could not be deleted because the id was not found.'
           );
       } else {
         res.Status(500).json(error);
