@@ -10,14 +10,14 @@ module.export = function (sequelize, DataTypes) {
       allowNull: false,
       validate: {
         len: [1]
-      },
+      }
     },
     body: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
-      },
+      }
     },
     longitude: {
       type: DataTypes.STRING,
@@ -26,13 +26,13 @@ module.export = function (sequelize, DataTypes) {
     latitude: {
       type: DataTypes.STRING,
       allowNull: false
-    },
+    }
   });
   Crime.associate = function (models) {
     Crime.belongsto(models.User, {
       foreignkey: {
         allowNull: false
-      },
+      }
     });
   };
   return Crime;
