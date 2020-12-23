@@ -82,15 +82,20 @@ body {
   marquee{
     font-size: 30px;
     font-family: 'Bebas Neue', cursive;
-    width: auto;
+    width: 100%;
     color: white;
+    margin-left: 60px;
+  }
+  marquee inline {
+    padding-left: 60px;
   }
 /* for map */
 
 #map {
   height: 400px;
   /* The height is 400 pixels */
-  width: 80%;
+  width: 60%;
   /* The width is the width of the web page */
   margin: auto;
 }
+
