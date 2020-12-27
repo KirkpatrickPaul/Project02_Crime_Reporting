@@ -36,8 +36,15 @@ $(document).ready(() => {
     newTr.data("crime", crimeData);
     newTr.append("<td>" + crimeData.name + "</td>");
     if (crimeData.Posts) {
-        
+        newTr.append("<td>" + crimeData.Posts.length + "</td>");
     }
+    else {
+        newTr.append("<td>0</td>")
+    }
+    newTr.append("<td><a href='/blog?crime_id=" + crimeData.id + "'>Go to Crimes</a></td>");
+    newTr.append("<td><a href='/cms?crime_id=" + crimeData.id + "'>Create a Crime</a></td>");
+    newTr.append("<td><a style='cursor:pointer;color:red' class='delete-crime'>Delete Crime</a></td>");
+    return newTr;
   }
   // Function to get the Crimes getting them ready for rendering
   function getCrimes() {
