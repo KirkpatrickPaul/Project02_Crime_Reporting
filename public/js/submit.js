@@ -6,6 +6,9 @@ $(document).ready(() => {
 
     $(document).on("submit", "", )
 
+    // getting initial list of Crimes
+    getCrimes();
+
     function getCrimes () {
         $.get("/api/crimes", function(data){
             let rowsToAdd = [];
