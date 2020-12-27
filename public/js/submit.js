@@ -6,9 +6,9 @@ $(document).ready(() => {
 
     $(document).on("submit", "", )
 
-    // getting initial list of Crimes
+    // Getting initial list of Crimes
     getCrimes();
-
+    // Function to get the Crimes getting them ready for rendering
     function getCrimes () {
         $.get("/api/crimes", function(data){
             let rowsToAdd = [];
@@ -18,6 +18,22 @@ $(document).ready(() => {
             renderCrimeList(rowsToAdd);
             nameInput.val("");
         });
+    }
+    // Function for rendering the list of Crimes
+    function renderCrimeList(rows) {
+        crimeList.children().not(":last").remove();
+        crimeContainer.children(".alert").remove();
+        if (rows.length) {
+            console.log(rows);
+            crimeList.prepend(rows);
+        }
+        else {
+            renderEmpty();
+        }
+    }
+    // Function for rendering an empty Crime input
+    function renderEmpty() {
+        
     }
 
 
