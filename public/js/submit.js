@@ -33,8 +33,12 @@ $(document).ready(() => {
     }
     // Function for rendering an empty Crime input
     function renderEmpty() {
-        
+        let alertDiv = $("<div>");
+        alertDiv.addClass("alert alert-danger");
+        alertDiv.text("You must create a Crime before you can post it.");
+        crimeContainer.append(alertDiv);
     }
+    
 
 
 
