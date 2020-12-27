@@ -15,3 +15,5 @@ function initMap() {
   });
 }
 initMap();
+
+// Everything above this is for Google Maps
