@@ -38,29 +38,14 @@ $(document).ready(() => {
         alertDiv.text("You must create a Crime before you can post it.");
         crimeContainer.append(alertDiv);
     }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-})
+    // Function for deleting Crime inputs
+    function crimeDelete(){
+        const listItemData = $(this).parent("td").parent("tr").data("crime");
+        const id = listItemData;
+        $.ajax({
+            method: "DELETE",
+            url: "/api/crimes/" + id
+        })
+            .then(getCrimes);
+    }
+});
