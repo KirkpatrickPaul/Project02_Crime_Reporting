@@ -1,5 +1,5 @@
 // Event handlers to submit crimes
-$(document).ready( () => {
+$(document).ready(() => {
   const crimeInput = $();
   const crimeList = $();
   const crimeContainer = $();
@@ -32,7 +32,7 @@ $(document).ready( () => {
   }
   // Function for creating new list of Crimes
   function createCrimeRow (crimeData) {
-    let newTr = $('<tr>');
+    const newTr = $('<tr>');
     newTr.data('crime', crimeData);
     newTr.append('<td>' + crimeData.name + '</td>');
     if (crimeData.Posts) {
@@ -53,9 +53,9 @@ $(document).ready( () => {
   }
   // Function to get the Crimes getting them ready for rendering
   function getCrimes () {
-    $.get('/api/crimes', function(data) {
-      let rowsToAdd = [];
-      for (var i = 0; i < data.length; i++) {
+    $.get('/api/crimes', function (data) {
+      const rowsToAdd = [];
+      for (let i = 0; i < data.length; i++) {
         rowsToAdd.push(createCrimeRow(data[i]));
       }
       renderCrimeList(rowsToAdd);
@@ -78,7 +78,7 @@ $(document).ready( () => {
   }
   // Function for rendering an empty Crime input
   function renderEmpty () {
-    let alertDiv = $('<div>');
+    const alertDiv = $('<div>');
     alertDiv.addClass('alert alert-danger');
     alertDiv.text('You must create a Crime before you can post it.');
     crimeContainer.append(alertDiv);
