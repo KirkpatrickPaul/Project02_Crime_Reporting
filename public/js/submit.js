@@ -15,7 +15,7 @@ $(document).ready(() => {
     event.preventDefeault();
 
     if (
-      !nameInput
+      !crimeInput
         .val()
         .trim()
         .trim()
@@ -23,7 +23,7 @@ $(document).ready(() => {
       return;
     }
     upsertCrime({
-      name: nameInput.val().trim()
+      name: crimeInput.val().trim()
     });
   }
   // function for creating a crime. Calls getCrimes when completed
@@ -54,7 +54,7 @@ $(document).ready(() => {
         rowsToAdd.push(createCrimeRow(data[i]));
       }
       renderCrimeList(rowsToAdd);
-      nameInput.val('');
+      crimeInput.val('');
     });
   }
   // Function for rendering the list of Crimes
