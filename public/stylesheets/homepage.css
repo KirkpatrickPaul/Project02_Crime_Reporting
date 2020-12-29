@@ -1,7 +1,9 @@
-body{
+body {
   background-color: #314455;
 }
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -10,7 +12,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: rgb(151,169,189);
+  background-color: rgb(151, 169, 189);
 }
 
 .topnav a {
@@ -25,12 +27,12 @@ body {
 }
 
 .topnav a:hover {
-  background-color: rgb(100,78,91);
+  background-color: rgb(100, 78, 91);
   color: white;
 }
 
 .topnav a.active {
-  background-color: rgb(201,101,103);
+  background-color: rgb(201, 101, 103);
   color: white;
 }
 
@@ -38,7 +40,7 @@ body {
   float: right;
 }
 
-.topnav input[type=text] {
+.topnav input[type='text'] {
   padding: 8px;
   margin-top: 10px;
   font-size: 17px;
@@ -51,7 +53,7 @@ body {
   padding: 8px;
   margin-top: 10px;
   margin-right: 16px;
-  background: rgb(49,68,85);
+  background: rgb(49, 68, 85);
   font-size: 17px;
   border: none;
   outline: 4px;
@@ -59,14 +61,42 @@ body {
 }
 
 .topnav .search-container button:hover {
-  background:rgb(100,78,91);
+  background: rgb(100, 78, 91);
+}
+
+/* for the text that moves */
+marquee {
+  font-size: 30px;
+  font-family: 'Bebas Neue', cursive;
+  width: 100%;
+  color: white;
+}
+marquee inline {
+  padding-left: 10rem;
+}
+/* for map */
+
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 50%;
+  /* The width is the width of the web page */
+  margin: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  #map {
+    width: 70%;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .topnav .search-container {
     float: none;
   }
-  .topnav a, .topnav input[type=text], .topnav .search-container button {
+  .topnav a,
+  .topnav input[type='text'],
+  .topnav .search-container button {
     float: none;
     display: block;
     text-align: left;
@@ -74,28 +104,10 @@ body {
     margin: 0;
     padding: 14px;
   }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
+  .topnav input[type='text'] {
+    border: 1px solid #ccc;
+  }
+  #map {
+    width: 95%;
   }
 }
-  /* for the text that moves */
-  marquee{
-    font-size: 30px;
-    font-family: 'Bebas Neue', cursive;
-    width: 100%;
-    color: white;
-    margin-left: 60px;
-  }
-  marquee inline {
-    padding-left: 60px;
-  }
-/* for map */
-
-#map {
-  height: 400px;
-  /* The height is 400 pixels */
-  width: 60%;
-  /* The width is the width of the web page */
-  margin: auto;
-}
-
