@@ -1,4 +1,6 @@
 // Event handlers to submit crimes
+const $ = window.$;
+
 $(document).ready(() => {
   const crimeInput = $();
   const crimeList = $();
