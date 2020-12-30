@@ -1,4 +1,4 @@
-module.export = function (sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Crime = sequelize.define('Crime', {
     user: {
       type: DataTypes.STRING,
@@ -29,7 +29,7 @@ module.export = function (sequelize, DataTypes) {
     }
   });
   Crime.associate = function (models) {
-    Crime.belongsto(models.User, {
+    Crime.belongsTo(models.User, {
       foreignkey: {
         allowNull: false
       }
