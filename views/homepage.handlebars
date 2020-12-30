@@ -1,0 +1,28 @@
+<nav>
+    <div class="topnav">
+        <a class="active" id="crimes" href="/">Home</a>
+        <a id="crimes" href="/crime">Crimes</a>
+        <a id="report" href="/report">Report</a>
+        <a id="log-in" href="/login">Log In</a>
+        <a id="sign-up" href="/signup">Sign Up</a>
+        <div class="search-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+</nav>
+<br>
+<!--Start of marquee-->
+<marquee behavior="scroll" direction="left" loop="infinite" scrollamount="10">
+    {{#each crime}} <inline id="{{id}}">{{title}}</inline>‎‏‏‎{{/each}} ‎‏‏‎
+</marquee>
+<!--End of marquee-->
+
+<br>
+<br>
+<!--Start of map-->
+<div id="map"></div>
+<!--End of map-->
+<br>
+<br>
