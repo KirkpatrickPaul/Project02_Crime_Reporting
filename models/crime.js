@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     longitude: {
-      type: DataTypes.DECIMAL(11, 8),
+      type: DataTypes.DECIMAL(18, 8),
       allowNull: false,
       validate: {
         max: 180,
@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     latitude: {
-      type: DataTypes.DECIMAL(10, 8),
+      type: DataTypes.DECIMAL(17, 8),
       allowNull: false,
       validate: {
         max: 90,
