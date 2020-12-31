@@ -1,6 +1,7 @@
 // Requiring necessary npm packages
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const helmet = require('helmet');
@@ -31,7 +32,7 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '/public')));
 // We need to use sessions to keep track of our user's login status
 app.use(
   session({

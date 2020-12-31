@@ -1,6 +1,6 @@
 /* eslint-disable */
 // Initialize and add the map
-function initMap () {
+function initMap() {
   // The location of kansasCity
   const kansasCity = { lat: 39.099728, lng: -94.578568 };
   // The map, centered at kansasCity
@@ -14,3 +14,4 @@ function initMap () {
     map: map
   });
 }
+initMap();

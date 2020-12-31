@@ -12,11 +12,12 @@ router.get('/', async (req, res) => {
     };
     const crimeData = await db.Crime.findAll(searchParams);
     const crime = crimeData.map((crime) => crime.dataValues);
-    console.log('crime :>> ', crime);
     res.status(200);
     res.render('homepage', {
       crime,
-      GOOGLE_PLACES_API: process.env.GOOGLE_PLACES_API
+      GOOGLE_PLACES_API: process.env.GOOGLE_PLACES_API,
+      style: 'homepage.css',
+      javascript: 'homepage.js'
     });
   } catch (error) {
     console.log(error);
