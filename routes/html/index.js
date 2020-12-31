@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     res.redirect('/members');
   }
 
-  res.sendFile(path.join(__dirname, '../../public/signup.html'));
+  res.render(path.join(__dirname, '../../public/signup.html'));
 });
 
 router.get('/login', (req, res) => {

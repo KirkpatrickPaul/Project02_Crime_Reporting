@@ -1,10 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   const Crime = sequelize.define('Crime', {
-    user: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,15 +15,23 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     longitude: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.DECIMAL(11, 8),
+      allowNull: false,
+      validate: {
+        max: 180,
+        min: 0
+      }
     },
     latitude: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.DECIMAL(10, 8),
+      allowNull: false,
+      validate: {
+        max: 90,
+        min: -90
+      }
     }
   });
-  Crime.associate = function (models) {
+  Crime.associate = function(models) {
     Crime.belongsTo(models.User, {
       foreignkey: {
         allowNull: false

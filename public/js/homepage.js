@@ -14,6 +14,3 @@ function initMap() {
     map: map
   });
 }
-initMap();
-
-// Everything above this is for Google Maps
