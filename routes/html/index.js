@@ -10,7 +10,8 @@ router.get('/', async (req, res) => {
     const searchParams = {
       include: [db.User]
     };
-    const crime = await db.Crime.findAll(searchParams);
+    const crimeData = await db.Crime.findAll(searchParams);
+    const crime = crimeData.map((crime) => crime.dataValues);
     console.log('crime :>> ', crime);
     res.status(200);
     res.render('homepage', {
