@@ -2,15 +2,36 @@
 const path = require('path');
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require('../../config/middleware/isAuthenticated');
+const db = require('../../models');
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-  // If the user already has an account send them to the members page
-  if (req.user) {
-    res.redirect('/members');
+router.get('/', async (req, res) => {
+  try {
+    const searchParams = {
+      include: [db.User]
+    };
+    const crimeData = await db.Crime.findAll(searchParams);
+    const crime = crimeData.map((crime) => crime.dataValues);
+    res.status(200);
+    res.render('homepage', {
+      crime,
+      GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
+      GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
+      style: 'homepage.css',
+      javascript: 'homepage.js'
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+    res.send(error);
   }
 
-  res.sendFile(path.join(__dirname, '../../public/signup.html'));
+  // // If the user already has an account send them to the members page
+  // if (req.user) {
+  //   res.redirect('/members');
+  // }
+
+  // res.sendFile(path.join(__dirname, '../../public/signup.html'));
 });
 
 router.get('/login', (req, res) => {
