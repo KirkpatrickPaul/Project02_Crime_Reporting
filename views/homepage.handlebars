@@ -9,7 +9,7 @@
 <br>
 <!--Start of marquee-->
 <marquee behavior="scroll" direction="left" loop="infinite" scrollamount="10">
-    {{#each crime}} <inline data-id="{{id}}">{{title}}</inline>‎‏‏‎{{/each}} ‎‏‏‎
+    {{#each crime}} <inline id="{{id}}">{{title}}</inline>‎‏‏‎{{/each}} ‎‏‏‎
 </marquee>
 <!--End of marquee-->
 
@@ -20,7 +20,3 @@
 <!--End of map-->
 <br>
 <br>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key={{@GOOGLE_PLACES_API}}=initMap&libraries=&v=weekly"
-    defer>
-    </script>

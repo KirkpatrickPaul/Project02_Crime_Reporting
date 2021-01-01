@@ -15,7 +15,8 @@ router.get('/', async (req, res) => {
     res.status(200);
     res.render('homepage', {
       crime,
-      GOOGLE_PLACES_API: process.env.GOOGLE_PLACES_API,
+      GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
+      GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
       style: 'homepage.css',
       javascript: 'homepage.js'
     });
