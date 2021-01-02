@@ -1,5 +1,6 @@
 /* eslint-disable */
 // Initialize and add the map
+
 const markerCluster = new MarkerClusterer(map, markers, {
   imagePath: `${path}/m`
 });
@@ -22,6 +23,7 @@ function initMap() {
     position: kansasCity,
     map: map
   });
+  const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   const markers = locations.map((location, i) => {
     return new google.maps.Marker({
       position: location,
