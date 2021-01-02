@@ -1,3 +1,4 @@
+/* eslint-disable */
 function initMap() {
   const kansasCity = { lat: 39.099728, lng: -94.578568 };
   const map = new google.maps.Map(document.getElementById('map'), {
