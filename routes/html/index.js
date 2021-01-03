@@ -34,6 +34,28 @@ router.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '../../public/signup.html'));
 });
 
+router.get('/crime', async (req, res) => {
+  try {
+    const searchParams = {
+      include: [db.User]
+    };
+    const crimeData = await db.Crime.findAll(searchParams);
+    const crime = crimeData.map((crime) => crime.dataValues);
+    res.status(200);
+    res.render('crimes', {
+      crime,
+      GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
+      GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
+      style: 'crimes.css',
+      javascript: 'crimes.js'
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+    res.send(error);
+  }
+});
+
 router.get('/login', (req, res) => {
   // If the user already has an account send them to the members page
   if (req.user) {
