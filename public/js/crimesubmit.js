@@ -9,8 +9,10 @@ $(document).ready(() => {
 
     // Event listeners for posting, updating, and deleting crimes
     $(document).on("click","#crimeSubmit", submitCrime);
-    $(document).on("click",);
-    $(document).on("click",);
+    $(document).on("click",".edit-btn");
+    $(document).on("click",".delete-btn");
+
+    getCrimes();
 
     // function to submit crime and take user to crime page
     function submitCrime(event){
@@ -20,10 +22,22 @@ $(document).ready(() => {
             return;
         }
         else {
-            
+            $.ajax({
+                method: "CREATE",
+                url: "/api/crime" + id
+            }).then(getCrimes)
+                window.location.href = "/crime"
         }
+    };
+    // function to get Crimes
+    function getCrimes(){
+        $.get("/api/crime", () =>{
+            crimes = data;
+        })
+    };
+    // function to update Crimes
 
 
 
-    }
+    // function to delete Crimes
 })
