@@ -1,19 +1,20 @@
 
-const $ = window.$;
+// const $ = window.$;
 
 $(document).ready(() => {
-    const userEmail = $("#userEmail");
-    const crimeTitle = $("#crimeTitle");
-    const crimeBody = $("#crimeBody");
-    const crimeLocation = $("#crimeLoc");
+    const userEmail = $("#email");
+    const crimeTitle = $("#title");
+    const crimeBody = $(".crimeBody");
+    const crimeLocation = $("#latAndLon");
 
+    let id = $(this).data("id");
     let crimeId;
     let updating = false;
 
     // Event listeners for posting, updating, and deleting crimes
     $(document).on("click","#crimeSubmit", submitCrime);
-    $(document).on("click",".edit-btn");
-    $(document).on("click",".delete-btn");
+    $(document).on("click",".edit-btn", updateCrime);
+    $(document).on("click",".delete-btn", deleteCrime);
 
     getCrimes();
 
@@ -28,7 +29,7 @@ $(document).ready(() => {
         else {
             $.ajax({
                 method: "CREATE",
-                url: "/api/crime" + id
+                url: "/api/crimes" + id
             }).then(getCrimes)
                 window.location.href = "/crime"
         }
@@ -38,8 +39,8 @@ $(document).ready(() => {
         updateCrime(newCrime);
     }
     // function to get Crimes
-    function getCrimes(){
-        $.get("/api/crime", () =>{
+    function getCrimes(data){
+        $.get("/api/crimes", () =>{
             crimes = data;
         })
     };

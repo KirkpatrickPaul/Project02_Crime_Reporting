@@ -50,7 +50,7 @@
           <!--BODY-->
           <label for="body"><h3>What happened?</h3></label>
           <br>
-          <input id="body" type="text" placeholder="Let us know what happened?" name="body" required>
+          <input id="body" type="text" class="crimeBody" placeholder="Let us know what happened?" name="body" required>
           <br>
           <!--LATITUDE AND LONGITUDE-->
           <label for="latAndLon"><h3>Where did the crime happen at?</h3></label>
@@ -58,7 +58,7 @@
           <input id="latAndLon" type="text" placeholder="Where did the crime happen?" name="latAndLon" required>
           
         </div>
-        <button type="button"><strong>Submit</strong></button>
+        <button type="button" id="crimeSubmit"><strong>Submit</strong></button>
       </form>
     </div>
     <script
@@ -71,6 +71,6 @@
     defer>
     </script>
     <script type="text/javascript" src="js/members.js"></script>
-    <script type="text/javascript" src="js/submit.js"></script>
+    <script type="text/javascript" src="js/crimesubmit.js"></script>
   </body>
 </html>
