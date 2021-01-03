@@ -7,7 +7,7 @@ $(document).ready(() => {
   const crimeContainer = $();
 
   // Event listeners for posting and deleting crimes
-  $(document).on('submit', '#crime-form', handleCrimeFormSubmit);
+  $(document).on('submit', '#report', handleCrimeFormSubmit);
   $(document).on('submit', '#delete-crime', crimeDelete);
 
   // Getting initial list of Crimes
