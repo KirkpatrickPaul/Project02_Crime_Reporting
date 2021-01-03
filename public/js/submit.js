@@ -1,21 +1,21 @@
-// Event handlers to submit crimes
+
 const $ = window.$;
 
 $(document).ready(() => {
-  const crimeBody = $("#crimeBody");
-  const crimeList = $();
-  const crimeContainer = $();
+  const crimeBody = $('#crimeBody');
+  const crimeList = $('.cards');
+  const crimeContainer = $('#crimeContainer');
 
   // Event listeners for posting, updating, and deleting crimes
   $(document).on('click', '#report-crime', handleCrimeFormSubmit);
-  $(document).on('click', '#update-crime', updateCrime);
+  // $(document).on('click', '#update-crime', updateCrime);
   $(document).on('submit', '#delete-crime', crimeDelete);
 
   // Getting initial list of Crimes
   getCrimes();
   // Function to handle crime post button submit
   function handleCrimeFormSubmit (event) {
-    event.preventDefeault();
+    event.preventDefault();
 
     if (
       !crimeBody
