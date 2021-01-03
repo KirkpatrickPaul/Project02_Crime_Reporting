@@ -2,7 +2,7 @@
 const $ = window.$;
 
 $(document).ready(() => {
-  const crimeInput = $("#crimeInput");
+  const crimeBody = $("#crimeBody");
   const crimeList = $();
   const crimeContainer = $();
 
@@ -18,7 +18,7 @@ $(document).ready(() => {
     event.preventDefeault();
 
     if (
-      !crimeInput
+      !crimeBody
         .val()
         .trim()
         .trim()
@@ -26,7 +26,7 @@ $(document).ready(() => {
       return;
     }
     upsertCrime({
-      name: crimeInput.val().trim()
+      name: crimeBody.val().trim()
     });
   }
   // function for creating a crime. Calls getCrimes when completed
@@ -62,7 +62,7 @@ $(document).ready(() => {
         rowsToAdd.push(createCrimeRow(data[i]));
       }
       renderCrimeList(rowsToAdd);
-      crimeInput.val('');
+      crimeBody.val('');
     });
   }
   // Function for rendering the list of Crimes
@@ -79,14 +79,14 @@ $(document).ready(() => {
       renderEmpty();
     }
   }
-  // Function for rendering an empty Crime input
+  // Function for rendering an empty Crime Body
   function renderEmpty () {
     const alertDiv = $('<div>');
     alertDiv.addClass('alert alert-danger');
     alertDiv.text('You must create a Crime before you can post it.');
     crimeContainer.append(alertDiv);
   }
-  // Function for deleting Crime inputs
+  // Function for deleting Crime Bodys
   function crimeDelete () {
     const listItemData = $(this)
       .parent('td')
