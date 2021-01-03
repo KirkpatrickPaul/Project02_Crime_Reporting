@@ -52,7 +52,14 @@
 					}
 				})(marker));
 			});
-		};
+		} else {
+			const kansasCity = { lat: 39.099728, lng: -94.578568 };
+				const map = new google.maps.Map(mapElem, {
+					zoom: 10,
+					center: kansasCity
+				});
+
+		}
 	};
 	</script>
 </body>

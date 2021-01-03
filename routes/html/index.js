@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '../../public/signup.html'));
 });
 
-router.get('/crime', async (req, res) => {
+router.get('/crimes', async (req, res) => {
   try {
     let user = '';
     if (req.user) {
@@ -96,14 +96,15 @@ router.get('/members', isAuthenticated, async (req, res) => {
     const userData = await db.User.findAll(searchParams);
     const user = userData.map((user) => user.dataValues);
     console.log('user :>> ', user);
+    const crimes = user.Crimes;
     res.render('members', {
       user,
+      crimes,
       GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
       GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
       style: 'members.css',
       javascript: 'members.js'
     });
-    res.sendFile(path.join(__dirname, '../../public/members.html'));
   } catch (error) {
     if (!req.user) {
       res.status(400);
