@@ -13,9 +13,17 @@ $(document).ready(() => {
     $(document).on("click",);
 
     // function to submit crime and take user to crime page
-    function submitCrime(post){
-        $.post("/api/crimes", post, () => {
-            window.location.href = "/crime"
-        });
+    function submitCrime(event){
+        event.preventDefault();
+        // wont submit crime if inputs are empty
+        if (!userEmail.val().trim() || !crimeTitle.val().trim() || !crimeBody.val().trim() || !crimeLocation.val().trim()) {
+            return;
+        }
+        else {
+            
+        }
+
+
+
     }
 })
