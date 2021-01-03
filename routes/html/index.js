@@ -57,7 +57,7 @@ router.get('/crime', async (req, res) => {
 });
 // Routes the user to report a crime
 router.get('/report', (req, res) => {
-    res.sendFile(path.join(__dirname, "../../public/members.html"))
+    res.sendFile(path.join(__dirname, "../../public/report.html"))
 });
 
 // Routes user to login page

@@ -2,12 +2,13 @@
 const $ = window.$;
 
 $(document).ready(() => {
-  const crimeInput = $();
+  const crimeInput = $("#crimeInput");
   const crimeList = $();
   const crimeContainer = $();
 
-  // Event listeners for posting and deleting crimes
-  $(document).on('submit', '#report', handleCrimeFormSubmit);
+  // Event listeners for posting, updating, and deleting crimes
+  $(document).on('click', '#report-crime', handleCrimeFormSubmit);
+  $(document).on('click', '#update-crime', updateCrime);
   $(document).on('submit', '#delete-crime', crimeDelete);
 
   // Getting initial list of Crimes
