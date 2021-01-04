@@ -9,6 +9,8 @@ $(document).ready(() => {
   const id = $(this).data('id');
   let crimeId;
   const updating = false;
+  let newCrime;
+  let crimes;
 
   // Event listeners for posting, updating, and deleting crimes
   $(document).on('click', '#crimeSubmit', submitCrime);
@@ -26,9 +28,7 @@ $(document).ready(() => {
       !crimeTitle.val().trim() ||
       !crimeBody.val().trim() ||
       !crimeLocation.val().trim()
-    ) {
-      return;
-    }
+    ) {}
     // if inputs are valid, sumbit crime and redirect user to crime page
     else {
       $.ajax({
