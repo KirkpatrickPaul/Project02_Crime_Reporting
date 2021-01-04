@@ -1,4 +1,4 @@
-// const $ = window.$;
+const $ = window.$;
 
 $(document).ready(() => {
   const userEmail = $('#email');
@@ -6,9 +6,9 @@ $(document).ready(() => {
   const crimeBody = $('.crimeBody');
   const crimeLocation = $('#latAndLon');
 
-  let id = $(this).data('id');
+  const id = $(this).data('id');
   let crimeId;
-  let updating = false;
+  const updating = false;
 
   // Event listeners for posting, updating, and deleting crimes
   $(document).on('click', '#crimeSubmit', submitCrime);
@@ -18,7 +18,7 @@ $(document).ready(() => {
   getCrimes();
 
   // function to submit crime and take user to crime page
-  function submitCrime(event) {
+  function submitCrime (event) {
     event.preventDefault();
     // wont submit crime if inputs are empty
     if (
@@ -43,13 +43,13 @@ $(document).ready(() => {
     updateCrime(newCrime);
   }
   // function to get Crimes
-  function getCrimes(data) {
+  function getCrimes (data) {
     $.get('/api/crimes', () => {
       crimes = data;
     });
   }
   // function to update Crimes
-  function updateCrime() {
+  function updateCrime () {
     $.ajax({
       method: 'PUT',
       url: '/api/crime' + id,
@@ -57,7 +57,7 @@ $(document).ready(() => {
     });
   }
   // function to delete Crimes
-  function deleteCrime(event) {
+  function deleteCrime (event) {
     event.preventDefault();
     $.ajax({
       method: 'DELETE',
