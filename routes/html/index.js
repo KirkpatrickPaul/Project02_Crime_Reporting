@@ -79,7 +79,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 router.get('/signup', (req, res) => {
-  // If the user already has an account send them to the members page
+  // If the user already has an account send them to the root page
   if (req.user) {
     res.redirect('/');
   }
@@ -95,8 +95,8 @@ router.get('/members', isAuthenticated, async (req, res) => {
     const searchParams = { include: [db.Crime], where: { id: reqUser.id } };
     const userData = await db.User.findAll(searchParams);
     const user = userData.map((user) => user.dataValues);
-    console.log('user :>> ', user);
     const crimes = user.Crimes;
+    crimes.ofUser = true;
     res.render('members', {
       user,
       crimes,
