@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 
   // res.sendFile(path.join(__dirname, '../../public/signup.html'));
 });
-
+// Routes the users to see crimes
 router.get('/crime', async (req, res) => {
   try {
     const searchParams = {
@@ -55,7 +55,12 @@ router.get('/crime', async (req, res) => {
     res.send(error);
   }
 });
+// Routes the user to report a crime
+router.get('/report', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/report.html'));
+});
 
+// Routes user to login page
 router.get('/login', (req, res) => {
   // If the user already has an account send them to the members page
   if (req.user) {
