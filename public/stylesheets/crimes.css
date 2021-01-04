@@ -127,3 +127,69 @@ img{
   max-width: auto  ;
   
 }
+/* BUTTON STUFF BELOW */
+.btn{
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn:last-child{
+  margin-right: 0;
+}
+
+.btn:before , .btn:after{
+  content: "";
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.delete-btn{
+  background-color: #ff5d5b;
+  border: 2px solid #cf544d;
+}
+.edit-btn{
+  background-color: #00cd43;
+  border: 2px solid #0ea642;
+}
+
+.delete-btn:before, .delete-btn:after {
+width: 4px;
+height: 70%;
+background: #460100 ;
+} 
+
+.delete-btn:before {
+  transform: translate(-50%, -50%)
+  rotate(45deg);
+}
+
+.delete-btn:after {
+  transform: translate(-50%, -50%)
+  rotate(-45deg);
+}
+
+.edit-btn:before {
+  width: 50%;
+  height: 50%;
+  background: #024d0f;
+}
+.edit-btn:after {
+  width: 9px;
+  height: 70%;
+  transform: translate(-50%, -50%);
+}
+/* BUTTON HOVER BELOW */
+.btn:hover:before, .btn:hover:after {
+  top: 50%;
+  opacity: 1;
+}
