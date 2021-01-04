@@ -1,4 +1,7 @@
-const $ = window.$;
+/* eslint-disable */
+
+/*  const $ = window.$; <--- getting console error in browser
+ `$ has already been declared */
 
 $(document).ready(() => {
   const userEmail = $('#email');
@@ -28,7 +31,7 @@ $(document).ready(() => {
       !crimeTitle.val().trim() ||
       !crimeBody.val().trim() ||
       !crimeLocation.val().trim()
-    ) {}
+    ) {return}
     // if inputs are valid, sumbit crime and redirect user to crime page
     else {
       $.ajax({
