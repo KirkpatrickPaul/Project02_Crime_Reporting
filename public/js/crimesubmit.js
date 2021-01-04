@@ -28,8 +28,8 @@ $(document).ready(() => {
         // if inputs are valid, sumbit crime and redirect user to crime page
         else {
             $.ajax({
-                method: "CREATE",
-                url: "/api/crimes" + id
+                method: "POST",
+                url: "/api/crimes"
             }).then(getCrimes)
                 window.location.href = "/crime"
         }
@@ -48,7 +48,7 @@ $(document).ready(() => {
     function updateCrime(){
         $.ajax({
             method: "PUT",
-            url: "/api/crime",
+            url: "/api/crime" + id,
             data: crimes
         })
     }
