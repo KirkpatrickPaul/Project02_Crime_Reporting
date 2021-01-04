@@ -12,5 +12,5 @@ VALUES (3, 'Suspicious Coin Found', 'Turns out it was only a quarter.', 39.11070
 	, (1, 'Missing Bacon', 'Someone Has stolen the bacon out of my refrigerator!', 38.987538, -94.600184, '2021-01-04 10:39:12', '2021-01-04 10:39:12')
 	, (1, 'Pilot Flew the Coup!', "My deadbeat husband just up and goes to work while I'm stuck at home tending to our cat!", 39.115905, -94.242901, '2021-01-04 13:39:12', '2021-01-04 13:39:12')
 	, (3, 'Shoes Spray Painted on Side of House', 'Someone was painting shoes on houses and these shoes are huge.', 39.166900, -94.589001, '2021-01-05 08:43:13', '2021-01-05 08:43:13')
-	, (2, 'Squirrel Attacks BBQ!', 'Please keep an eye out for the squirls in the neighborhood, I was attacked at our bbq last night by one. He stole my hamburger and chips.', 38.890362, -94.811877, '2021-01-05 11:43:13', '2021-01-05 11:43:13')
+	, (2, 'Squirrel Attacks BBQ!', 'Please keep an eye out for the squirrels in the neighborhood, I was attacked at our bbq last night by one. He stole my hamburger and chips.', 38.890362, -94.811877, '2021-01-05 11:43:13', '2021-01-05 11:43:13')
 	, (3, 'Vending Machine Stocked with Expired Food', 'Police are investigating a vending machine that had an expired bag of Funyuns.', 38.9124, -94.388275, '2021-01-05 16:43:13', '2021-01-05 16:43:13');

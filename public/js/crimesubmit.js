@@ -4,8 +4,8 @@
  `$ has already been declared */
 
 $(document).ready(() => {
-  const userEmail = $('#email');
-  const crimeTitle = $('#title');
+  const userEmail = $('.crimeEmail');
+  const crimeTitle = $('.crimeTitle');
   const crimeBody = $('.crimeBody');
   const crimeLocation = $('#latAndLon');
 
