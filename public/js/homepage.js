@@ -5,13 +5,13 @@ var myChart = new Chart(ctx, {
         labels: ['Stolen Sandwiches', 'Sidewalks Vandalized', 'Empty Lots Set on Fire', 'Crimes Committed by Squirrels', 'Pidgeons'],
         datasets: [{
             label: 'KC Crime Stats',
-            data: [150, 1443, 5159, 7099, 3070],
+            data: [150, 1443, 515, 709, 2070],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(255, 206, 86, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(153, 102, 255, 0.8)'
+                'rgba(194, 156, 179, 0.8)',
+                'rgba(133, 85, 113, 0.8)',
+                'rgba(179, 64, 78, 0.8)',
+                'rgba(212, 119, 120, 0.8)',
+                'rgba(136, 165, 195, 0.8)'
             ],
             borderColor: [
                 'rgba(255, 255, 255, 1)',
