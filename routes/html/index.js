@@ -7,13 +7,17 @@ const router = require('express').Router();
 
 router.get('/', async (req, res) => {
   try {
+    let user = '';
+    if (req.user) {
+      user = req.user;
+    }
     const searchParams = {
       include: [db.User]
     };
     const crimeData = await db.Crime.findAll(searchParams);
     const crime = crimeData.map((crime) => crime.dataValues);
-    res.status(200);
     res.render('homepage', {
+      user,
       crime,
       GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
       GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
@@ -34,15 +38,19 @@ router.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '../../public/signup.html'));
 });
 
-router.get('/crime', async (req, res) => {
+router.get('/crimes', async (req, res) => {
   try {
+    let user = '';
+    if (req.user) {
+      user = req.user;
+    }
     const searchParams = {
       include: [db.User]
     };
     const crimeData = await db.Crime.findAll(searchParams);
     const crime = crimeData.map((crime) => crime.dataValues);
-    res.status(200);
     res.render('crimes', {
+      user,
       crime,
       GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
       GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
@@ -55,11 +63,16 @@ router.get('/crime', async (req, res) => {
     res.send(error);
   }
 });
+// Routes the user to report a crime
+router.get('/report', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/report.html'));
+});
 
+// Routes user to login page
 router.get('/login', (req, res) => {
   // If the user already has an account send them to the members page
   if (req.user) {
-    res.redirect('/members');
+    res.redirect('/');
   }
 
   res.sendFile(path.join(__dirname, '../../public/login.html'));
@@ -70,11 +83,41 @@ router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
+router.get('/signup', (req, res) => {
+  // If the user already has an account send them to the root page
+  if (req.user) {
+    res.redirect('/');
+  }
+
+  res.sendFile(path.join(__dirname, '../../public/signup.html'));
+});
 
 // Here we've add our isAuthenticated middleware to this route.
 // If a user who is not logged in tries to access this route they will be redirected to the signup page
-router.get('/members', isAuthenticated, (_req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/members.html'));
+router.get('/members', isAuthenticated, async (req, res) => {
+  try {
+    const reqUser = req.user;
+    const searchParams = { include: [db.Crime], where: { id: reqUser.id } };
+    const userData = await db.User.findAll(searchParams);
+    const user = userData.map((user) => user.dataValues);
+    const crimes = user.Crimes;
+    crimes.ofUser = true;
+    res.render('members', {
+      user,
+      crimes,
+      GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
+      GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
+      style: 'members.css',
+      javascript: 'members.js'
+    });
+  } catch (error) {
+    if (!req.user) {
+      res.status(400);
+      res.send('No user information was sent!');
+    }
+    res.status(500);
+    res.send(error);
+  }
 });
 
 module.exports = router;

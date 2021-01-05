@@ -1,5 +1,11 @@
 <li class="cards_item" data-id="{{id}}">
   <div class="card">
+    {{#if ofUser}}
+      <container>
+        <div class="btn edit-btn"></div>
+        <div class="btn delete-btn"></div>
+     </container>
+    {{/if}}
     <div class="card_content">
       <h2 class="card_title">{{title}}</h2>
       <p class="card_text">{{body}}</p>

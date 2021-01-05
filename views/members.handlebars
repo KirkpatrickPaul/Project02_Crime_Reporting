@@ -1,0 +1,53 @@
+<nav>
+  <div class="topnav">
+    <a id="home" href="/">Home</a>
+    <a id="crimes" href="/crimes">Crimes</a>
+    <a class="active" id="members" href="/members">Report</a>
+    {{#if user}}
+     <a id="log-out" href="/logout">Log Out</a>
+    {{/if}}
+    {{#unless user}}
+     <a id="log-in" href="/login">Log In</a>
+     <a id="sign-up" href="/signup">Sign Up</a>
+    {{/unless}}
+</nav>
+<!--<br>-->
+<!--<br>-->
+<!--Start of map-->
+<!--<div id="map"></div>-->
+<!--End of map-->
+<br>
+<br>
+<div class="main">
+  <div class="container-of-form">
+  <form >
+    <div class="formcontainer">
+      <h1>Report a crime form</h1>
+    <div class="container">
+      <!--EMAIL-->
+      <label for="email"><h2>What is your email?</h2></label>
+      <input id="email" type="text" placeholder="Enter email" name="email" required>
+      <br>
+      <!--TITLE-->
+      <label for="title"><h2>Title of the crime</h2></label>
+      <input id="title" type="text" placeholder="Title of crime" name="email" required>
+      <br>
+      <!--BODY-->
+      <label for="body"><h2>What happened?</h2></label>
+      <input id="body" type="text" placeholder="Let us know what happened?" name="body" required>
+      <br>
+      <!--LATITUDE AND LONGITUDE-->
+      <label for="latAndLon"><h2>Where did the crime happen?</h2></label>
+      <input id="latAndLon" type="text" placeholder="Where did the crime happen?" name="latAndLon" required>
+    </div>
+    <button type="submit" class="submitBtn"><strong>Submit</strong></button>
+  </form>
+  <br>
+  <br>
+  </div>
+    <ul class="cards">
+      {{#each crime}}
+        {{> crimes/crime-card }}
+      {{/each}}
+    </ul>
+</div>
