@@ -9,6 +9,13 @@
   const crimeBody = $('.crimeBody');
   const crimeLocation = $('#latAndLon');
 
+  const data = {
+    email: userEmail.val().trim(), 
+    title: crimeTitle.val().trim(),
+    body: crimeBody.val().trim(),
+    location: crimeLocation.val().trim()
+  }
+
   let post;
   let crimeId;
   const updating = false;
@@ -34,12 +41,6 @@
     ) {return}
     // if inputs are valid, sumbit crime and redirect user to crime page
     else {
-      const data = {
-        email: userEmail.val().trim(), 
-        title: crimeTitle.val().trim(),
-        body: crimeBody.val().trim(),
-        location: crimeLocation.val().trim()
-      }
       $.ajax({
         method: 'POST',
         url: '/api/crimes',
@@ -61,11 +62,12 @@
     });
   }
   // function to update Crimes
-  function updateCrime () {
+  function updateCrime (event) {
+    event.preventDefault();
     $.ajax({
       method: 'PUT',
-      url: '/api/crime' + id,
-      data: crimes
+      url: '/api/crime',
+      data: data
     });
   }
   // function to delete Crimes
@@ -73,7 +75,8 @@
     event.preventDefault();
     $.ajax({
       method: 'DELETE',
-      url: '/api/crime' + id
-    }).then(getCrimes);
+      url: '/api/crime',
+      data: data
+    })
   }
 });
