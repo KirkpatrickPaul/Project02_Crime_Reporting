@@ -149,7 +149,7 @@ router.post('/places', (req, res) => {
     const GOOGLE_PLACES_API =
       process.env.GOOGLE_PLACES_API1 + '-' + process.env.GOOGLE_PLACES_API2;
     const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=${GOOGLE_PLACES_API}&query=${query}`;
-    let data = '';
+    const data = '';
     const config = {
       method: 'get',
       url: url,
@@ -157,10 +157,10 @@ router.post('/places', (req, res) => {
       data: data
     };
     axios(config)
-      .then(function(response) {
+      .then(function (response) {
         res.json(JSON.stringify(response.data));
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   } catch (error) {
