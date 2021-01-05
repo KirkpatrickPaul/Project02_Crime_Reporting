@@ -102,3 +102,9 @@ marquee inline {
     width: 95%;
   }
 }
+
+.chart {
+  max-width: 600px;
+  display: flex;
+  margin: auto;
+}
