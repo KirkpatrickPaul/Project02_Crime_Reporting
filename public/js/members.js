@@ -1,22 +1,80 @@
+
 /* eslint-disable */
-function initMap() {
-  const kansasCity = { lat: 39.099728, lng: -94.578568 };
-  const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: kansasCity
-  });
-  const marker = new google.maps.Marker({
-    position: kansasCity,
-    map: map
-  });
-}
 
-const $ = window.$;
+/*  const $ = window.$; <--- getting console error in browser
+ `$ has already been declared */
 
-$(document).ready(() => {
-  // This file just does a GET request to figure out which user is logged in
-  // and updates the HTML on the page
-  $.get('/api/user_data').then(data => {
-    $('.member-name').text(data.email);
-  });
+ $(document).ready(() => {
+  const userEmail = $('.crimeEmail');
+  const crimeTitle = $('.crimeTitle');
+  const crimeBody = $('.crimeBody');
+  const crimeLocation = $('#latAndLon');
+
+  let post;
+  let crimeId;
+  const updating = false;
+  let newCrime;
+  let crimes;
+
+  // Event listeners for posting, updating, and deleting crimes
+  $(document).on('click', '#crimeSubmit', submitCrime);
+  $(document).on('click', '.edit-btn', updateCrime);
+  $(document).on('click', '.delete-btn', deleteCrime);
+
+  getCrimes();
+
+  // function to submit crime and take user to crime page
+  function submitCrime (event) {
+    event.preventDefault();
+    // wont submit crime if inputs are empty
+    if (
+      !userEmail.val().trim() ||
+      !crimeTitle.val().trim() ||
+      !crimeBody.val().trim() ||
+      !crimeLocation.val().trim()
+    ) {return}
+    // if inputs are valid, sumbit crime and redirect user to crime page
+    else {
+      const data = {
+        email: userEmail.val().trim(), 
+        title: crimeTitle.val().trim(),
+        body: crimeBody.val().trim(),
+        location: crimeLocation.val().trim()
+      }
+      $.ajax({
+        method: 'POST',
+        url: '/api/crimes',
+        data: data
+      }).then();
+      window.location.href = '/crime';
+    }
+  }
+  if (updating) {
+    newCrime.id = crimeId;
+    updateCrime(newCrime);
+  }
+  // function to get Crimes
+  function getCrimes (data) {
+    $.ajax({
+      method: 'GET',
+      url: '/api/crimes'
+      // crimes = data;
+    });
+  }
+  // function to update Crimes
+  function updateCrime () {
+    $.ajax({
+      method: 'PUT',
+      url: '/api/crime' + id,
+      data: crimes
+    });
+  }
+  // function to delete Crimes
+  function deleteCrime (event) {
+    event.preventDefault();
+    $.ajax({
+      method: 'DELETE',
+      url: '/api/crime' + id
+    }).then(getCrimes);
+  }
 });
