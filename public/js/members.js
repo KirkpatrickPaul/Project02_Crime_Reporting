@@ -1,3 +1,4 @@
+
 /* eslint-disable */
 
 /*  const $ = window.$; <--- getting console error in browser
