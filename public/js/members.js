@@ -46,7 +46,7 @@
         url: '/api/crimes',
         data: data
       }).then();
-      window.location.href = '/crime';
+      window.location.href = '/crimes';
     }
   }
   if (updating) {
