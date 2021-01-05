@@ -157,10 +157,10 @@ router.post('/places', (req, res) => {
       data: data
     };
     axios(config)
-      .then(function (response) {
+      .then((response) => {
         res.json(JSON.stringify(response.data));
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   } catch (error) {
