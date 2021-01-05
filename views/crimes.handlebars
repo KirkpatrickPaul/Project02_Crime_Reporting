@@ -1,0 +1,18 @@
+<nav>
+  <div class="topnav">
+    <a id ="home" href="/">Home</a>
+    <a class="active" id ="crimes" href="/crimes">Crimes</a>
+    <a id ="members" href="/members">Report</a>
+    <a id ="log-in" href="/login">Log In</a>
+    <a id ="sign-up" href="/signup">Sign Up</a>
+</nav>
+<br>
+<br>
+<img src="assets/images/KSAZ-police-lights-tape-banner2-ConvertImage.jpg" alt="police lights">
+<div class="main">
+  <ul class="cards">
+    {{#each crime}}
+      {{> crimes/crime-card }}
+    {{/each}}
+  </ul>
+</div>

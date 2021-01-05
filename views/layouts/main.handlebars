@@ -23,20 +23,21 @@
 		</script>
 	<script type="text/javascript" src="/js/{{javascript}}"></script>
 	<script>
-		function initMap() {
-
-			const kansasCity = { lat: 39.099728, lng: -94.578568 };
-			const locations = [
-				{{ #each crime }}
-		["{{title}}", {{ latitude }}, {{ longitude }}],
-			{{
-				/each}}
-			]
-			const map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 10,
-				center: kansasCity
-			});
-			// got this and modified it from https://medium.com/@limichelle21/integrating-google-maps-api-for-multiple-locations-a4329517977a
+		function initMap () {
+			try {
+			const mapElem = document.getElementById('map')
+			if (mapElem) {
+				const kansasCity = { lat: 39.099728, lng: -94.578568 };
+				const locations = [
+				{{#each crime}}
+				["{{title}}", {{latitude}}, {{longitude}}],
+				{{/each}}
+				]
+				const map = new google.maps.Map(mapElem, {
+					zoom: 10,
+					center: kansasCity
+				});
+				// got this and modified it from https://medium.com/@limichelle21/integrating-google-maps-api-for-multiple-locations-a4329517977a
 			const infowindow = new google.maps.InfoWindow({});
 			let marker;
 			locations.forEach((loc) => {
@@ -52,7 +53,17 @@
 					}
 				})(marker));
 			});
-		};
+		} else {
+			const kansasCity = { lat: 39.099728, lng: -94.578568 };
+				const map = new google.maps.Map(mapElem, {
+					zoom: 10,
+					center: kansasCity
+				});
+			}
+		} catch (error) {
+			console.log (error)
+		}
+	};
 	</script>
 </body>
 

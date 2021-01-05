@@ -1,83 +1,81 @@
 body {
-    background-color: #314455;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    font-family: 'Bebas Neue', cursive;
-  }
-  
-  .topnav {
-    overflow: hidden;
-    background-color: rgb(151, 169, 189);
-  }
-  
-  .topnav a {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 30px;
-    font-family: 'Bebas Neue', cursive;
-  }
-  
-  .topnav a:hover {
-    background-color: rgb(100, 78, 91);
-    color: white;
-  }
-  
-  .topnav a.active {
-    background-color: rgb(201, 101, 103);
-    color: white;
-  }
-  
-  .topnav .search-container {
-    float: right;
-  }
-  
-  .topnav input[type='text'] {
-    padding: 8px;
-    margin-top: 10px;
-    font-size: 17px;
-    border: none;
-    height: 40px;
-  }
-  
-  .topnav .search-container button {
-    float: right;
-    padding: 8px;
-    margin-top: 10px;
-    margin-right: 16px;
-    background: rgb(49, 68, 85);
-    font-size: 17px;
-    border: none;
-    outline: 4px;
-    height: 40px;
-  }
-  
-  .topnav .search-container button:hover {
-    background: rgb(100, 78, 91);
-  }
+  background-color: #314455;
+}
+* {
+  box-sizing: border-box;
+}
 
- /* CARD STUFF BELOW */
+body {
+  margin: 0;
+  font-family: 'Bebas Neue', cursive;
+}
 
-.main{
+.topnav {
+  overflow: hidden;
+  background-color: rgb(151, 169, 189);
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.topnav a:hover {
+  background-color: rgb(100, 78, 91);
+  color: white;
+}
+
+.topnav a.active {
+  background-color: rgb(201, 101, 103);
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type='text'] {
+  padding: 8px;
+  margin-top: 10px;
+  font-size: 17px;
+  border: none;
+  height: 40px;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 8px;
+  margin-top: 10px;
+  margin-right: 16px;
+  background: rgb(49, 68, 85);
+  font-size: 17px;
+  border: none;
+  outline: 4px;
+  height: 40px;
+}
+
+.topnav .search-container button:hover {
+  background: rgb(100, 78, 91);
+}
+
+/* CARD STUFF BELOW */
+
+.main {
   max-width: 1200px;
   margin: 0 auto;
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 80px;
     font-weight: 400;
     text-align: center;
 }
-
-
 
 .cards {
   display: flex;
@@ -85,6 +83,7 @@ h1 {
   list-style: none;
   margin: 0;
   padding: 0;
+  
 }
 
 .cards_item {
@@ -92,7 +91,7 @@ h1 {
   padding: 1rem;
 }
 .card {
-  background-color: white;
+  background-color: rgb(201,102,103);
   border-radius: 0.25rem;
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -102,7 +101,7 @@ h1 {
 
 .card_content {
   padding: 1rem;
-  background-color: rgb(201,102,103);
+  background-color: rgb(201, 102, 103);
 }
 
 .card_title {
@@ -118,6 +117,79 @@ h1 {
   color: #ffffff;
   font-size: 0.875rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;    
+  margin-bottom: 1.25rem;
   font-weight: 400;
+}
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: auto  ;
+  
+}
+/* BUTTON STUFF BELOW */
+.btn{
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn:last-child{
+  margin-right: 0;
+}
+
+.btn:before , .btn:after{
+  content: "";
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.delete-btn{
+  background-color: #ff5d5b;
+  border: 2px solid #cf544d;
+}
+.edit-btn{
+  background-color: #00cd43;
+  border: 2px solid #0ea642;
+}
+
+.delete-btn:before, .delete-btn:after {
+width: 4px;
+height: 70%;
+background: #460100 ;
+} 
+
+.delete-btn:before {
+  transform: translate(-50%, -50%)
+  rotate(45deg);
+}
+
+.delete-btn:after {
+  transform: translate(-50%, -50%)
+  rotate(-45deg);
+}
+
+.edit-btn:before {
+  width: 50%;
+  height: 50%;
+  background: #024d0f;
+}
+.edit-btn:after {
+  width: 9px;
+  height: 70%;
+  transform: translate(-50%, -50%);
+}
+/* BUTTON HOVER BELOW */
+.btn:hover:before, .btn:hover:after {
+  top: 50%;
+  opacity: 1;
 }
