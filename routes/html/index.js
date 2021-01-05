@@ -97,16 +97,16 @@ router.get('/signup', (req, res) => {
 router.get('/members', isAuthenticated, async (req, res) => {
   try {
     const reqUser = req.user;
-    const searchParams = { include: [db.Crime], where: { id: reqUser.id } };
-    const userData = await db.User.findAll(searchParams);
-    const user = userData.map((user) => user.dataValues);
-    const crimes = user[0].Crimes;
-    if (crimes[0]) {
-      crimes.forEach((crime) => (crime.ofUser = true));
+    const searchParams = { include: [db.User], where: { UserId: reqUser.id } };
+    const crimeData = await db.Crime.findAll(searchParams);
+    const crime = crimeData.map((crime) => crime.dataValues);
+    console.log(crime);
+    if (crime[0]) {
+      crime.forEach((crime) => (crime.ofUser = true));
     }
     res.render('members', {
       user: reqUser,
-      crimes,
+      crime,
       GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
       GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
       style: 'members.css',

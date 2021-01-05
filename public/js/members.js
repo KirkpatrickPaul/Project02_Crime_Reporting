@@ -15,7 +15,7 @@ $(document).ready(() => {
   let crimes;
 
   // Event listeners for posting, updating, and deleting crimes
-  $('form').on('submit', submitCrime);
+  $('.report-form').on('submit', submitCrime);
   $(document).on('click', '.edit-btn', updateCrime);
   $(document).on('click', '.delete-btn', deleteCrime);
 
@@ -29,20 +29,20 @@ $(document).ready(() => {
       crimeBody.val().trim() &&
       crimeLocation.val().trim()
     ) {
-      const GOOGLE_PLACES_API = '';
       const query = crimeLocation.val();
-
       const googleRes = await $.ajax({
-        method: 'GET',
-        url: `https://maps.googleapis.com/maps/api/place/textsearch/json?key=${GOOGLE_PLACES_API}&query=${query}`
+        method: 'POST',
+        url: `/api/places`,
+        data: { data: query }
       });
-      const { lat, lon } = googleRes.results[0].geometry.location;
-
+      const jsonRes = JSON.parse(googleRes);
+      console.log('jsonRes :>> ', jsonRes);
+      const { lat, lng } = jsonRes.results[0].geometry.location;
       const data = {
         email: userEmail.val().trim(),
         title: crimeTitle.val().trim(),
         body: crimeBody.val().trim(),
-        longitude: lon,
+        longitude: lng,
         latitude: lat
       };
       const post = await $.ajax({

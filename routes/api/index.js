@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const axios = require('axios');
 // Requiring our models and passport as we've configured it
 const db = require('../../models');
 const passport = require('../../config/passport');
@@ -49,23 +50,39 @@ router
       const crimes = await db.Crime.findAll(criteria);
       res.status(200).json(crimes);
     } catch (error) {
-      res.Status(500).json(error);
+      res.status(500).json(error);
     }
   })
 
   .post(async (req, res) => {
     try {
-      const newCrime = await db.Crime.create(req.body);
+      console.log('req.body :>> ', req.body);
+      const { email, longitude, latitude, ...data } = req.body;
+      console.log('email :>> ', email);
+      const userQuery = { where: { email: email } };
+      console.log('userQuery :>> ', userQuery);
+      const [User] = await db.User.findAll(userQuery);
+      console.log('User :>> ', User);
+      const crimeQuery = {
+        UserId: User.dataValues.id,
+        longitude: Number(longitude),
+        latitude: Number(latitude),
+        ...data
+      };
+      console.log('crimeQuery :>> ', crimeQuery);
+      const newCrime = await db.Crime.create(crimeQuery);
+      console.log('newCrime :>> ', newCrime);
       res.status(201).json(newCrime);
     } catch (error) {
       if (!req.body) {
         res
-          .Status(400)
+          .status(400)
           .json(
             'Bad request. Your crime could not be created because the request was empty.'
           );
       } else {
-        res.Status(500).json(error);
+        console.error(error);
+        res.status(500).json(error);
       }
     }
   })
@@ -84,18 +101,18 @@ router
     } catch (error) {
       if (!req.body) {
         res
-          .Status(400)
+          .status(400)
           .json(
             'Bad request. Your crime could not be updated because the request was empty.'
           );
       } else if (!req.params.id && !req.body.id) {
         res
-          .Status(404)
+          .status(404)
           .json(
             'Bad request. Your crime could not be updated because the id was not found.'
           );
       } else {
-        res.Status(500).json(error);
+        res.status(500).json(error);
       }
     }
   })
@@ -116,14 +133,40 @@ router
     } catch (error) {
       if (!req.params.id && !req.body.id) {
         res
-          .Status(404)
+          .status(404)
           .json(
             'Bad request. Your crime could not be deleted because the id was not found.'
           );
       } else {
-        res.Status(500).json(error);
+        res.status(500).json(error);
       }
     }
   });
+
+router.post('/places', (req, res) => {
+  try {
+    const query = req.body.data;
+    const GOOGLE_PLACES_API =
+      process.env.GOOGLE_PLACES_API1 + '-' + process.env.GOOGLE_PLACES_API2;
+    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=${GOOGLE_PLACES_API}&query=${query}`;
+    let data = '';
+    const config = {
+      method: 'get',
+      url: url,
+      responseType: 'json',
+      data: data
+    };
+    axios(config)
+      .then(function(response) {
+        res.json(JSON.stringify(response.data));
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  } catch (error) {
+    console.log(error);
+    res.json(error);
+  }
+});
 
 module.exports = router;

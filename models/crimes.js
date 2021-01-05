@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   const Crime = sequelize.define('Crime', {
     title: {
       type: DataTypes.STRING,
@@ -19,7 +19,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: {
         max: 180,
-        min: 0
+        min: -180
       }
     },
     latitude: {
@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     }
   });
-  Crime.associate = function (models) {
+  Crime.associate = function(models) {
     Crime.belongsTo(models.User, {
       foreignkey: {
         allowNull: false
