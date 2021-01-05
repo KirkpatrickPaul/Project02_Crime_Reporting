@@ -1,10 +1,15 @@
 <nav>
     <div class="topnav">
         <a class="active" id="home" href="/">Home</a>
-        <a id="crimes" href="/crime">Crimes</a>
-        <a id="report" href="/report">Report</a>
+        <a id="crimes" href="/crimes">Crimes</a>
+        <a id="members" href="/members">Report</a>
+        {{#if user}}
+        <a id="log-out" href="/logout">Log Out</a>
+        {{/if}}
+        {{#unless user}}
         <a id="log-in" href="/login">Log In</a>
         <a id="sign-up" href="/signup">Sign Up</a>
+        {{/unless}}
 </nav>
 <br>
 <!--Start of marquee-->
