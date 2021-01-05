@@ -10,6 +10,7 @@ $(document).ready(() => {
   const crimeLocation = $('#latAndLon');
 
   const id = $(this).data('id');
+  let post;
   let crimeId;
   const updating = false;
   let newCrime;
@@ -34,9 +35,16 @@ $(document).ready(() => {
     ) {return}
     // if inputs are valid, sumbit crime and redirect user to crime page
     else {
+      const data = {
+        email: userEmail, 
+        title: crimeTitle,
+        body: crimeBody,
+        location: crimeLocation
+      }
       $.ajax({
         method: 'POST',
-        url: '/api/crimes'
+        url: '/api/crimes',
+        data
       }).then(getCrimes);
       window.location.href = '/crime';
     }
@@ -47,8 +55,10 @@ $(document).ready(() => {
   }
   // function to get Crimes
   function getCrimes (data) {
-    $.get('/api/crimes', () => {
-      crimes = data;
+    $.ajax({
+      method: 'GET',
+      url: '/api/crimes'
+      // crimes = data;
     });
   }
   // function to update Crimes
