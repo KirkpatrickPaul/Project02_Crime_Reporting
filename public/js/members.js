@@ -15,7 +15,7 @@ $(document).ready(() => {
   let crimes;
 
   // Event listeners for posting, updating, and deleting crimes
-  $(document).on('submit', '#crimeSubmit', submitCrime);
+  $('form').on('submit', submitCrime);
   $(document).on('click', '.edit-btn', updateCrime);
   $(document).on('click', '.delete-btn', deleteCrime);
 

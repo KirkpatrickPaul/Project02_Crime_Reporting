@@ -100,10 +100,12 @@ router.get('/members', isAuthenticated, async (req, res) => {
     const searchParams = { include: [db.Crime], where: { id: reqUser.id } };
     const userData = await db.User.findAll(searchParams);
     const user = userData.map((user) => user.dataValues);
-    const crimes = user.Crimes;
-    crimes.ofUser = true;
+    const crimes = user[0].Crimes;
+    if (crimes[0]) {
+      crimes.forEach((crime) => (crime.ofUser = true));
+    }
     res.render('members', {
-      user,
+      user: reqUser,
       crimes,
       GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
       GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
@@ -115,6 +117,7 @@ router.get('/members', isAuthenticated, async (req, res) => {
       res.status(400);
       res.send('No user information was sent!');
     }
+    console.log(error);
     res.status(500);
     res.send(error);
   }
