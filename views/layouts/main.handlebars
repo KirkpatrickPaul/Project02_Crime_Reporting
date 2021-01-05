@@ -24,6 +24,7 @@
 	<script type="text/javascript" src="/js/{{javascript}}"></script>
 	<script>
 		function initMap () {
+			try {
 			const mapElem = document.getElementById('map')
 			if (mapElem) {
 				const kansasCity = { lat: 39.099728, lng: -94.578568 };
@@ -52,7 +53,16 @@
 					}
 				})(marker));
 			});
-		};
+		} else {
+			const kansasCity = { lat: 39.099728, lng: -94.578568 };
+				const map = new google.maps.Map(mapElem, {
+					zoom: 10,
+					center: kansasCity
+				});
+			}
+		} catch (error) {
+			console.log (error)
+		}
 	};
 	</script>
 </body>
