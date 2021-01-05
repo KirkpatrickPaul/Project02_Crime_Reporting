@@ -24,6 +24,7 @@ body {
   text-decoration: none;
   font-size: 30px;
   font-family: 'Bebas Neue', cursive;
+  max-height: 90px;
 }
 
 .topnav a:hover {
@@ -192,4 +193,15 @@ background: #460100 ;
 .btn:hover:before, .btn:hover:after {
   top: 50%;
   opacity: 1;
+}
+
+.logo{
+  height: 152px;
+  width: 150px;
+  margin-bottom: -90px;
+  margin-right: 99px;
+  display: flex;
+  padding-bottom: 80px;
+  padding-right: 40px;
+ 
 }
