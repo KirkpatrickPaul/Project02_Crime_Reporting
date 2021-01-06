@@ -97,14 +97,16 @@ router.get('/signup', (req, res) => {
 router.get('/members', isAuthenticated, async (req, res) => {
   try {
     const reqUser = req.user;
-    const searchParams = { include: [db.Crime], where: { id: reqUser.id } };
-    const userData = await db.User.findAll(searchParams);
-    const user = userData.map((user) => user.dataValues);
-    const crimes = user.Crimes;
-    crimes.ofUser = true;
+    const searchParams = { include: [db.User], where: { UserId: reqUser.id } };
+    const crimeData = await db.Crime.findAll(searchParams);
+    const crime = crimeData.map((crime) => crime.dataValues);
+    console.log(crime);
+    if (crime[0]) {
+      crime.forEach((crime) => (crime.ofUser = true));
+    }
     res.render('members', {
-      user,
-      crimes,
+      user: reqUser,
+      crime,
       GOOGLE_PLACES_API1: process.env.GOOGLE_PLACES_API1,
       GOOGLE_PLACES_API2: process.env.GOOGLE_PLACES_API2,
       style: 'members.css',
@@ -115,6 +117,7 @@ router.get('/members', isAuthenticated, async (req, res) => {
       res.status(400);
       res.send('No user information was sent!');
     }
+    console.log(error);
     res.status(500);
     res.send(error);
   }

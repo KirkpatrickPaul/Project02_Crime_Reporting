@@ -19,7 +19,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       validate: {
         max: 180,
-        min: 0
+        min: -180
       }
     },
     latitude: {

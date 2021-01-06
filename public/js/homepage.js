@@ -9,7 +9,7 @@ const myChart = new Chart(ctx, {
       'Sidewalks Vandalized',
       'Empty Lots Set on Fire',
       'Crimes Committed by Squirrels',
-      'Pidgeons'
+      'Pigeons'
     ],
     datasets: [
       {

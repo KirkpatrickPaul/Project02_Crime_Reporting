@@ -5,13 +5,13 @@
 The user is able to visit the deployed website and is prompted to sign up or log in. Once logged in, the user is able to submit a crime report that records such details as where the crime occurred (location-specific), what crime was committed, and the user's email. Once the user-generated crime report is submitted to the database, it is then posted on the Crimes page. The user is also able to view crimes that have been reported near their specific location (using Google Maps).
 
 ## Table of Contents
-* [User Story](#user)
+* [User Story](#user-story)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Deployed Website](#deployed)
+* [Deployed Website](#deployed-website)
 * [Repository](#repository)
-* [Future Development](#development)
-* [Technology Used](#technology)
+* [Future Development](#future-development)
+* [Technology Used](#technology-used)
 * [Questions](#questions)
 
 ## User Story
@@ -32,24 +32,36 @@ npm i
 ## Usage
 Visit the website (linked below) sign up or log in, and start submitting crimes!
 
-![ScreenShot](/public/assets/images/________)
+![login](./public/assets/images/login.png)
+![home](./public/assets/images/home.png)
+![report](./public/assets/images/report.png)
+![crimes](./public/assets/images/crimes.png)
 
 ## Deployed Website
-*~ link to heroku*
+[See Something, Say Something](https://fierce-mountain-61777.herokuapp.com/)
 
 ## Repository
 [Project02_Crime_Reporting](https://github.com/KirkpatrickPaul/Project02_Crime_Reporting)
 
 ## Future Development
-... 
+* Make the app available globally, rather than specifically directed at the KC Metro area.
+* Reconfigure app to handle a larger amount of traffic (i.e. limit crime cards).
+* Categorize crimes so that they can be searched and sorted.
+* "Crimes Near Me" functionality rather than wide scale database.
+* Integration with social media(s).
+* Graph takes in submitted information and adjusts accordingly.
+* Ability to choose color scheme depending on the user.
 
 ## Technology Used
-* JS ES6 
+* Google Maps API
+* Google Places API
+* Jaws DB
 * NODE.JS 
 * Heroku 
-* MYSQL 
-* NPM 
-* HTML + CSS
+* MySQL 
+* Sequelize
+* Charts.js 
+* Express
 
 ## Questions
 If you have any questions about the repo, please open an issue or contact us directly: 
