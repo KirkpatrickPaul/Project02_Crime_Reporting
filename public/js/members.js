@@ -74,7 +74,8 @@ $(document).ready(() => {
   }
   // function to update Crimes
   function updateCrime (event) {
-    
+    const title = $(".update-title");
+    const body = $(".update-body");
 
     event.preventDefault();
 
