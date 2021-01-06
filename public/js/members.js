@@ -92,12 +92,18 @@ $(document).ready(() => {
     });
   }
   // function to delete Crimes
-  function deleteCrime(event) {
-    event.preventDefault();
+  function deleteCrime() {
+
+    const cardBody = $(".card-delete");
+    
+    const crimeId = $(this).data('id');
+
     $.ajax({
       method: 'DELETE',
-      url: '/api/crime',
-      data: data
+      url: '/api/crimes/' + crimeId,
+      data: cardBody
+    }).then(() => {
+      $(cardBody).remove();
     })
   }
 });
