@@ -31,10 +31,5 @@
     "prettier-semi-cli": "^1.0.0",
     "semistandard": "^16.0.0",
     "snazzy": "^9.0.0"
-  },
-  "production": {
-"use_env_variable": "JAWSDB_URL",
-"dialect": "mysql"
   }
-  
 } 
