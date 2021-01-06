@@ -17,7 +17,6 @@ $(document).ready(() => {
   }
 
   let post;
-  let crimeId;
   const updating = false;
   let newCrime;
   let crimes;
@@ -75,11 +74,16 @@ $(document).ready(() => {
   }
   // function to update Crimes
   function updateCrime (event) {
+    
+
     event.preventDefault();
+
+    const crimeId = $(this).data('id');
+      
     $.ajax({
       method: 'PUT',
-      url: '/api/crime',
-      data: data
+      url: '/api/crime' + crimeId,
+      data: crimeId
     });
   }
   // function to delete Crimes
