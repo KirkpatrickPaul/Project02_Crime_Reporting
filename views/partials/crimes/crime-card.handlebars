@@ -2,12 +2,12 @@
   <div class="card">
     {{#if ofUser}}
       <container>
-        <div class="btn edit-btn"></div><div class="btn delete-btn"></div>
+        <div class="btn edit-btn" data-id="{{id}}"></div><div data-id="{{id}}" class="btn delete-btn"></div>
      </container>
     {{/if}}
     <div class="card_content">
-      <h2 class="card_title">{{title}}</h2>
-      <h1 class="card_text">{{body}}</h1>
+      <h2 class="card_title update-title">{{title}}</h2>
+      <h1 class="card_text update-body">{{body}}</h1>
     </div>
   </div>
 </li>

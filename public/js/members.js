@@ -9,7 +9,14 @@ $(document).ready(() => {
   const crimeBody = $('#body');
   const crimeLocation = $('#latAndLon');
 
-  let crimeId;
+  const data = {
+    email: userEmail.val().trim(), 
+    title: crimeTitle.val().trim(),
+    body: crimeBody.val().trim(),
+    location: crimeLocation.val().trim()
+  }
+
+  let post;
   const updating = false;
   let newCrime;
   let crimes;
@@ -66,11 +73,22 @@ $(document).ready(() => {
     });
   }
   // function to update Crimes
-  function updateCrime() {
+  function updateCrime () {
+
+    const title = $(".update-title");
+    const body = $(".update-body");
+
+    const editData = {
+      title: title.val().trim(),
+      body: body.val().trim()
+    }
+
+    const crimeId = $(this).data('id');
+      
     $.ajax({
       method: 'PUT',
-      url: '/api/crime' + id,
-      data: crimes
+      url: '/api/crimes' + crimeId,
+      data: editData
     });
   }
   // function to delete Crimes
@@ -78,7 +96,8 @@ $(document).ready(() => {
     event.preventDefault();
     $.ajax({
       method: 'DELETE',
-      url: '/api/crimes' + id
-    });
+      url: '/api/crime',
+      data: data
+    })
   }
 });
