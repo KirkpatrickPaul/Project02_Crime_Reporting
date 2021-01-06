@@ -77,6 +77,11 @@ $(document).ready(() => {
     const title = $(".update-title");
     const body = $(".update-body");
 
+    const editData = {
+      title: title.val().trim(),
+      body: body.val().trim()
+    }
+
     event.preventDefault();
 
     const crimeId = $(this).data('id');
@@ -84,7 +89,7 @@ $(document).ready(() => {
     $.ajax({
       method: 'PUT',
       url: '/api/crime' + crimeId,
-      data: crimeId
+      data: editData
     });
   }
   // function to delete Crimes
