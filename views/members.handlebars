@@ -18,9 +18,9 @@
 <!--End of map-->
 <br>
 <br>
-<div class="main">
+<div class="main" data-id:"{{user.id}}">
   <div class="container-of-form">
-  <form >
+  <form class="report-form" >
     <div class="formcontainer">
       <h1>Report a crime form</h1>
     <div class="container">
@@ -41,10 +41,11 @@
       <input id="latAndLon" type="text" placeholder="Where did the crime happen?" name="latAndLon" required>
     </div>
     <button type="submit" class="submitBtn"><strong>Submit</strong></button>
-  </form>
-  <br>
-  <br>
+    </form>
   </div>
+  <br>
+  <br>
+
     <ul class="cards">
       {{#each crime}}
         {{> crimes/crime-card }}
