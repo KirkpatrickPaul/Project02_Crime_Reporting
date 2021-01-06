@@ -73,7 +73,8 @@ $(document).ready(() => {
     });
   }
   // function to update Crimes
-  function updateCrime (event) {
+  function updateCrime () {
+
     const title = $(".update-title");
     const body = $(".update-body");
 
@@ -82,13 +83,11 @@ $(document).ready(() => {
       body: body.val().trim()
     }
 
-    event.preventDefault();
-
     const crimeId = $(this).data('id');
       
     $.ajax({
       method: 'PUT',
-      url: '/api/crime' + crimeId,
+      url: '/api/crimes' + crimeId,
       data: editData
     });
   }
