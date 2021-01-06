@@ -78,7 +78,7 @@ $(document).ready(() => {
     event.preventDefault();
     $.ajax({
       method: 'DELETE',
-      url: '/api/crime' + id
-    }).then(getCrimes);
+      url: '/api/crimes' + id
+    });
   }
 });
