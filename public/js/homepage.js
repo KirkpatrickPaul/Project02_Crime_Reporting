@@ -39,7 +39,7 @@ const myChart = new Chart(ctx, {
     },
     title: {
       display: true,
-      text: '2019 KANSAS CITY CRIME STATISTICS',
+      text: '2020 KANSAS CITY CRIME STATISTICS',
       fontColor: 'rgba(255, 255, 255, 1)',
       fontSize: 50
     }
