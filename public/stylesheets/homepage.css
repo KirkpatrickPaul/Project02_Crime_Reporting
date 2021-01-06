@@ -1,0 +1,110 @@
+body {
+  background-color: #314455;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(151, 169, 189);
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.topnav a:hover {
+  background-color: rgb(100, 78, 91);
+  color: white;
+}
+
+.topnav a.active {
+  background-color: rgb(201, 101, 103);
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type='text'] {
+  padding: 8px;
+  margin-top: 10px;
+  font-size: 17px;
+  border: none;
+  height: 40px;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 8px;
+  margin-top: 10px;
+  margin-right: 16px;
+  background: rgb(49, 68, 85);
+  font-size: 17px;
+  border: none;
+  outline: 4px;
+  height: 40px;
+}
+
+.topnav .search-container button:hover {
+  background: rgb(100, 78, 91);
+}
+
+/* for the text that moves */
+marquee {
+  font-size: 30px;
+  font-family: 'Bebas Neue', cursive;
+  width: 100%;
+  color: white;
+}
+marquee inline {
+  padding-left: 10rem;
+}
+/* for map */
+
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 50%;
+  /* The width is the width of the web page */
+  margin: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  #map {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  
+  .topnav input[type='text'] {
+    border: 1px solid #ccc;
+  }
+  #map {
+    width: 95%;
+  }
+}
+
+.chart {
+  max-width: 600px;
+  display: flex;
+  margin: auto;
+}

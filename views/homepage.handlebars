@@ -1,0 +1,33 @@
+<nav>
+    <div class="topnav">
+        <a class="active" id="home" href="/">Home</a>
+        <a id="crimes" href="/crimes">Crimes</a>
+        <a id="members" href="/members">Report</a>
+        {{#if user}}
+        <a id="log-out" href="/logout">Log Out</a>
+        {{/if}}
+        {{#unless user}}
+        <a id="log-in" href="/login">Log In</a>
+        <a id="sign-up" href="/signup">Sign Up</a>
+        {{/unless}}
+</nav>
+<br>
+<!--Start of marquee-->
+<marquee behavior="scroll" direction="left" loop="infinite" scrollamount="10">
+    {{#each crime}} <inline data-id="{{id}}">{{title}}</inline>‎‏‏‎{{/each}} ‎‏‏‎
+</marquee>
+<!--End of marquee-->
+
+<br>
+<br>
+<!--Start of map-->
+<div id="map"></div>
+<!--End of map-->
+<br>
+<br>
+
+<section>
+  <div class="chart">
+    <canvas id="myChart" width="500" height="500"></canvas>
+  </div>
+</section>

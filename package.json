@@ -1,5 +1,5 @@
 {
-  "name": "1-Passport-Example",
+  "name": "crime_search",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcryptjs": "2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -30,5 +31,9 @@
     "prettier-semi-cli": "^1.0.0",
     "semistandard": "^16.0.0",
     "snazzy": "^9.0.0"
+  }, 
+  "production": {
+  "use_env_variable": "JAWSDB_URL",
+  "dialect": "mysql2"
   }
-}
+} 

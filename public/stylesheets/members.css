@@ -1,0 +1,291 @@
+body {
+  background-color: #314455;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(151, 169, 189);
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.topnav a:hover {
+  background-color: rgb(100, 78, 91);
+  color: white;
+}
+
+.topnav a.active {
+  background-color: rgb(201, 101, 103);
+  color: white;
+}
+
+.topnav input[type='text'] {
+  padding: 8px;
+  margin-top: 10px;
+  font-size: 17px;
+  border: none;
+  height: 40px;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 8px;
+  margin-top: 10px;
+  margin-right: 16px;
+  background: rgb(49, 68, 85);
+  font-size: 17px;
+  border: none;
+  outline: 4px;
+  height: 40px;
+}
+
+.topnav .search-container button:hover {
+  background: rgb(100, 78, 91);
+}
+
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 50%;
+  /* The width is the width of the web page */
+  margin: auto;
+  background-color: black;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.container-of-form {
+  margin: auto;
+  text-align: left;
+}
+
+form {
+  width: 500px;
+  border: 5px solid 1a1a1c;
+  background-color: #97a9bd;
+  border-radius: 25px;
+  color: #333333;
+}
+
+.formcontainer {
+  text-align: center;
+  padding: 50px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 18;
+  font-weight: 200;
+}
+
+label {
+  align-self: center;
+}
+
+h2 {
+  text-align: left;
+  font-weight: 200;
+  margin-left: 34px;
+}
+
+input[type='text'],
+input[type='input'] {
+  width: 320px;
+  height: 50px;
+  margin: 00;
+  margin-bottom: 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: #fefefe;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.submitBtn {
+  background-color: rgb(201, 102, 103);
+  color: white;
+  padding: 14px 0;
+  margin: 10px 0;
+  border-radius: 25px;
+  width: 30%;
+}
+
+@media screen and (max-width: 1200px) {
+  #map {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+
+  .topnav a,
+  .topnav input[type='text'],
+  .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+
+  .topnav input[type='text'] {
+    border: 1px solid #ccc;
+  }
+
+  #map {
+    width: 95%;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards_item {
+  display: flex;
+  padding: 1rem;
+}
+.card {
+  background-color: rgb(201, 102, 103);
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card_content {
+  padding: 1rem;
+  background-color: rgb(201, 102, 103);
+}
+
+.card_title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.card_text {
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: auto;
+}
+/* BUTTON STUFF BELOW */
+.btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn:last-child {
+  margin-right: 0;
+}
+
+.btn:before,
+.btn:after {
+  content: '';
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #ff5d5b;
+  border: 2px solid #cf544d;
+}
+.edit-btn {
+  background-color: #00cd43;
+  border: 2px solid #0ea642;
+}
+
+.delete-btn:before,
+.delete-btn:after {
+  width: 4px;
+  height: 70%;
+  background: #460100;
+}
+
+.delete-btn:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.delete-btn:after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.edit-btn:before {
+  width: 50%;
+  height: 50%;
+  background: #024d0f;
+}
+.edit-btn:after {
+  width: 9px;
+  height: 70%;
+  transform: translate(-50%, -50%);
+}
+/* BUTTON HOVER BELOW */
+.btn:hover:before,
+.btn:hover:after {
+  top: 50%;
+  opacity: 1;
+}
+
+.logo {
+  height: 152px;
+  width: 150px;
+  margin-bottom: -90px;
+  margin-right: 99px;
+  display: flex;
+  padding-bottom: 80px;
+  padding-right: 40px;
+}
