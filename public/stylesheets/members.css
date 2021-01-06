@@ -279,3 +279,13 @@ img {
   top: 50%;
   opacity: 1;
 }
+
+.logo {
+  height: 152px;
+  width: 150px;
+  margin-bottom: -90px;
+  margin-right: 99px;
+  display: flex;
+  padding-bottom: 80px;
+  padding-right: 40px;
+}
