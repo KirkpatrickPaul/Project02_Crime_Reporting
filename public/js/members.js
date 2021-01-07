@@ -4,31 +4,22 @@
  `$ has already been declared */
 
 $(document).ready(() => {
-  const userEmail = $('#email');
-  const crimeTitle = $('#title');
-  const crimeBody = $('#body');
-  const crimeLocation = $('#latAndLon');
-
-  const data = {
-    email: userEmail.val().trim(),
-    title: crimeTitle.val().trim(),
-    body: crimeBody.val().trim(),
-    location: crimeLocation.val().trim()
-  };
-
-  let post;
-  const updating = false;
-  let newCrime;
-  let crimes;
-
   // Event listeners for posting, updating, and deleting crimes
   $('.report-form').on('submit', submitCrime);
-  $(document).on('click', '.edit-btn', updateCrime);
+  $('.edit-btn').on('click', updateCrime);
   $(document).on('click', '.delete-btn', deleteCrime);
+  $(document).on('click', '.edit-submit-btn', sendUpdate);
+  $('.card_title').on('keypress', enterHandler);
 
   // function to submit crime and take user to crime page
   async function submitCrime(event) {
     event.preventDefault();
+
+    const userEmail = $('#email');
+    const crimeTitle = $('#title');
+    const crimeBody = $('#body');
+    const crimeLocation = $('#latAndLon');
+
     // wont submit crime if inputs are empty
     if (
       userEmail.val().trim() &&
@@ -60,32 +51,51 @@ $(document).ready(() => {
       location.reload();
     }
   }
-  if (updating) {
-    newCrime.id = crimeId;
-    updateCrime(newCrime);
-  }
-  // function to get Crimes
-  function getCrimes(data) {
-    $.ajax({
-      method: 'GET',
-      url: '/api/crimes'
-      // crimes = data;
-    });
-  }
   // function to update Crimes
   function updateCrime() {
     const crimeId = $(this).data('id');
-    const card = $(`#crime-${crimeId}`);
-    const cardTitle = $(`#title-${crimeId}`);
-    const cardBody = $(`#body-${crimeId}`);
-    const textCard = $('div').attr('class', 'card');
+    const card = $(`#card-${crimeId}`);
+    $(`#title-${crimeId}`)
+      .attr('contenteditable', true)
+      .data('editing', true);
+
+    $(`#body-${crimeId}`)
+      .attr('contenteditable', true)
+      .data('editing', true);
+
+    $('<button>Submit</button>')
+      .attr('type', 'submit')
+      .attr('id', 'edit-submit-btn')
+      .data('id', crimeId)
+      .appendTo(card);
+  }
+
+  function enterHandler(event) {
+    const keycode = event.keyCode ? event.keyCode : event.which;
+    const dataEditing = $(this).data('editing');
+    if (keycode === 13 && dataEditing) {
+      event.preventDefault();
+      console.log('enterHandler Done');
+      sendUpdate();
+    }
+  }
+
+  function sendUpdate() {
+    console.log('sendUpdate');
+    const crimeId = $(this).data('id');
+
+    $('#edit-submit-btn').remove();
+
+    const newTitle = $(`#title-${crimeId}`);
+    newTitle.attr('contenteditable', false).data('editing', false);
+
+    const newBody = $(`#body-${crimeId}`);
+    newBody.attr('contenteditable', false).data('editing', false);
 
     const editData = {
-      title: title.val().trim(),
-      body: body.val().trim()
+      title: newTitle.val().trim(),
+      body: newBody.val().trim()
     };
-
-    const crimeId = $(this).data('id');
 
     $.ajax({
       method: 'PUT',
@@ -96,7 +106,7 @@ $(document).ready(() => {
   // function to delete Crimes
   function deleteCrime() {
     const crimeId = $(this).data('id');
-    const cardBody = $(`#crime-${crimeId}`);
+    const cardBody = $(`#card-${crimeId}`);
 
     $.ajax({
       method: 'DELETE',
