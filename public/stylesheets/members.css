@@ -290,8 +290,15 @@ img {
   padding-right: 40px;
 }
 
-/* .text-card {
-  position: absolute;
-  top: 10px;
-  left: 0;
-} */
+#edit-submit-btn {
+  background-color: #97a9bd;
+  color: white;
+  font-weight: 600;
+  width: 70px;
+  border-radius: 0 70px 70px 0;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
