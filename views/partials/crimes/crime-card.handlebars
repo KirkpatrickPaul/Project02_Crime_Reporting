@@ -1,13 +1,13 @@
-<li class="cards_item" data-id="{{id}}">
+<li class="cards_item" id="card-{{id}}">
   <div class="card">
     {{#if ofUser}}
-      <container>
-        <div class="btn edit-btn"></div><div class="btn delete-btn"></div>
+      <container class="card-delete">
+        <div class="btn edit-btn" data-id="{{id}}"></div><div data-id="{{id}}" class="btn delete-btn"></div>
      </container>
     {{/if}}
-    <div class="card_content">
-      <h2 class="card_title">{{title}}</h2>
-      <h1 class="card_text">{{body}}</h1>
+    <div class="card_content card-delete">
+      <h2 class="card_title update-title" data-id="{{id}}" id="title-{{id}}">{{title}}</h2>
+      <h1 class="card_text update-body" data-id="{{id}}" id="body-{{id}}">{{body}}</h1>
     </div>
   </div>
 </li>

@@ -56,13 +56,9 @@ router
 
   .post(async (req, res) => {
     try {
-      console.log('req.body :>> ', req.body);
       const { email, longitude, latitude, ...data } = req.body;
-      console.log('email :>> ', email);
       const userQuery = { where: { email: email } };
-      console.log('userQuery :>> ', userQuery);
       const [User] = await db.User.findAll(userQuery);
-      console.log('User :>> ', User);
       const crimeQuery = {
         UserId: User.dataValues.id,
         longitude: Number(longitude),
@@ -89,29 +85,33 @@ router
 
   .put(async (req, res) => {
     try {
-      let criteria;
-      if (req.params.id) {
-        criteria = { where: { id: req.params.id }, ...req.body };
-      } else {
-        const { id, ...body } = req.body;
-        criteria = { where: { id }, ...body };
-      }
-      const updated = await db.Crime.update(criteria);
-      res.status.json(updated);
+      const putID = parseInt(req.params.id);
+      const crimeData = req.body;
+      const criteria = { where: { id: putID } };
+      const updated = await db.Crime.update(crimeData, criteria);
+      res.status(200);
+      res.json(updated);
     } catch (error) {
       if (!req.body) {
+        console.log(
+          "'Bad request. Your crime could not be updated because the request was empty.'"
+        );
         res
           .status(400)
           .json(
             'Bad request. Your crime could not be updated because the request was empty.'
           );
       } else if (!req.params.id && !req.body.id) {
+        console.log(
+          'Bad request. Your crime could not be updated because the id was not found.'
+        );
         res
           .status(404)
           .json(
             'Bad request. Your crime could not be updated because the id was not found.'
           );
       } else {
+        console.log(error);
         res.status(500).json(error);
       }
     }
