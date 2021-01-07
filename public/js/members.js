@@ -10,11 +10,11 @@ $(document).ready(() => {
   const crimeLocation = $('#latAndLon');
 
   const data = {
-    email: userEmail.val().trim(), 
+    email: userEmail.val().trim(),
     title: crimeTitle.val().trim(),
     body: crimeBody.val().trim(),
     location: crimeLocation.val().trim()
-  }
+  };
 
   let post;
   const updating = false;
@@ -73,30 +73,30 @@ $(document).ready(() => {
     });
   }
   // function to update Crimes
-  function updateCrime () {
-
-    const title = $(".update-title");
-    const body = $(".update-body");
+  function updateCrime() {
+    const crimeId = $(this).data('id');
+    const card = $(`#crime-${crimeId}`);
+    const cardTitle = $(`#title-${crimeId}`);
+    const cardBody = $(`#body-${crimeId}`);
+    const textCard = $('div').attr('class', 'card');
 
     const editData = {
       title: title.val().trim(),
       body: body.val().trim()
-    }
+    };
 
     const crimeId = $(this).data('id');
-      
+
     $.ajax({
       method: 'PUT',
-      url: '/api/crimes' + crimeId,
+      url: '/api/crimes/' + crimeId,
       data: editData
     });
   }
   // function to delete Crimes
   function deleteCrime() {
-
-    const cardBody = $(".card-delete");
-    
     const crimeId = $(this).data('id');
+    const cardBody = $(`#crime-${crimeId}`);
 
     $.ajax({
       method: 'DELETE',
@@ -104,6 +104,6 @@ $(document).ready(() => {
       data: cardBody
     }).then(() => {
       $(cardBody).remove();
-    })
+    });
   }
 });

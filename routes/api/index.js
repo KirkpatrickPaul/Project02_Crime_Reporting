@@ -56,13 +56,9 @@ router
 
   .post(async (req, res) => {
     try {
-      console.log('req.body :>> ', req.body);
       const { email, longitude, latitude, ...data } = req.body;
-      console.log('email :>> ', email);
       const userQuery = { where: { email: email } };
-      console.log('userQuery :>> ', userQuery);
       const [User] = await db.User.findAll(userQuery);
-      console.log('User :>> ', User);
       const crimeQuery = {
         UserId: User.dataValues.id,
         longitude: Number(longitude),
