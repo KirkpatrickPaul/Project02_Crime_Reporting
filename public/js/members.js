@@ -8,8 +8,9 @@ $(document).ready(() => {
   $('.report-form').on('submit', submitCrime);
   $('.edit-btn').on('click', updateCrime);
   $(document).on('click', '.delete-btn', deleteCrime);
-  $(document).on('click', '.edit-submit-btn', sendUpdate);
+  $(document).on('click', '#edit-submit-btn', sendUpdate);
   $('.card_title').on('keypress', enterHandler);
+  $('.card_text').on('keypress', enterHandler);
 
   // function to submit crime and take user to crime page
   async function submitCrime(event) {
@@ -75,15 +76,12 @@ $(document).ready(() => {
     const dataEditing = $(this).data('editing');
     if (keycode === 13 && dataEditing) {
       event.preventDefault();
-      console.log('enterHandler Done');
       sendUpdate();
     }
   }
 
   function sendUpdate() {
-    console.log('sendUpdate');
-    const crimeId = $(this).data('id');
-
+    const crimeId = $('#edit-submit-btn').data('id');
     $('#edit-submit-btn').remove();
 
     const newTitle = $(`#title-${crimeId}`);
@@ -93,10 +91,9 @@ $(document).ready(() => {
     newBody.attr('contenteditable', false).data('editing', false);
 
     const editData = {
-      title: newTitle.val().trim(),
-      body: newBody.val().trim()
+      title: newTitle.text().trim(),
+      body: newBody.text().trim()
     };
-
     $.ajax({
       method: 'PUT',
       url: '/api/crimes/' + crimeId,
